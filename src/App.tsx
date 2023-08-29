@@ -21,11 +21,11 @@ const TodoItem = (ps: TodoItemProps) => (
 function App() {
   const [todos, setTodos] = useState([
     {
-      content: 'Pickup dry cleaning',
+      content: '"Enter" in any todo to add a new todo below it',
       isCompleted: true,
     },
     {
-      content: 'Get haircut',
+      content: 'Or Click + to add a todo in the bottom of the list',
       isCompleted: false,
     },
     {

@@ -68,7 +68,8 @@ ul {
   list-style: none;
   padding: 0;
   line-height: 2rem;
-  width: 500px;
+  min-width: 50%;
+  max-width: 80%;
 }
 
 input {
