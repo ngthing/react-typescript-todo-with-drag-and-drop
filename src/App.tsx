@@ -25,6 +25,7 @@ const TodoItem = (ps: TodoItemProps) => (
   </div>
 )
 function App() {
+  const [todoName, setTodoName] = useState('Todo')
   const [todos, setTodos] = useState([
     {
       content: '"Enter" in any todo to add a new todo below it',
@@ -68,6 +69,10 @@ function App() {
   }
   return (
     <div className="app">
+      <div className='todo-list-name'>
+        <input type="text" value={todoName}
+          onChange={(e) => setTodoName(e.target.value)} />
+      </div>
       <div className="todo-list-container">
         <ul className="todo-list">
           {todos.map((todo, i) => (

@@ -3,8 +3,15 @@ body {
   min-height: 100vh;
 }
 
-.app {
-  padding-top: 10rem;
+.todo-list-name {
+  padding-top: 15vh;
+  padding-bottom: 5vh;
+}
+
+.todo-list-name input {
+  font-size: 3rem;
+  text-align: center;
+  cursor: pointer;
 }
 
 .header {
