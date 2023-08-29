@@ -6,6 +6,7 @@ interface TodoItemProps {
   isCompleted: boolean;
   index: number;
   onChange: (content: string, i: number) => void;
+  handleDelete: (i: number) => void;
   handleKeyDown: (e: React.KeyboardEvent<HTMLInputElement>, i: number) => void;
 };
 
@@ -15,7 +16,7 @@ const TodoItem = (ps: TodoItemProps) => (
     <input type="text" value={ps.content} id={`todo-input-${ps.index}`}
       onKeyDown={(e) => ps.handleKeyDown(e, ps.index)}
       onChange={(e) => ps.onChange(e.target.value, ps.index)} />
-    <button className="btn-action">x</button>
+    <button className="btn-action" onClick={(e) => ps.handleDelete(ps.index)}>x</button>
   </div>
 )
 function App() {
@@ -52,12 +53,18 @@ function App() {
     newTodos[i].content = content;
     setTodos(newTodos);
   }
+  const deleteTodoAtIndex = (i: number) => {
+    setTodos(todos => todos.slice(0, i).concat(todos.slice(i + 1)))
+  }
   return (
     <div className="app">
       <div className="todo-list-container">
         <ul className="todo-list">
           {todos.map((todo, i) => (
-            <TodoItem key={`todo-` + i} {...todo} index={i} onChange={updateTodoAtIndex} handleKeyDown={handleKeyDown}></TodoItem>
+            <TodoItem key={`todo-` + i} {...todo} index={i}
+              onChange={updateTodoAtIndex}
+              handleKeyDown={handleKeyDown}
+              handleDelete={deleteTodoAtIndex} />
           ))}
         </ul>
 
