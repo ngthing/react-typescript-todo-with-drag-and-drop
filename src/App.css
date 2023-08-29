@@ -26,6 +26,9 @@ body {
   display: flex;
   align-items: center;
   margin: 1rem 0;
+  border: solid #c0bbbb8f;
+  padding: 2px 10px;
+  border-radius: 16px;
 }
 
 .todo-is-completed .checkbox {
@@ -75,4 +78,19 @@ input {
   font-size: 1.4rem;
   outline: none;
   width: 100%;
+}
+
+.btn-action {
+  border-color: transparent;
+  background: #c6b9b9;
+  border-radius: 45%;
+  color: #2f2b2b;
+  cursor: pointer;
+  width: 30px;
+  height: 25px;
+  font-size: large;
+}
+
+.btn-action:hover {
+  background: #ece2e2;
 }

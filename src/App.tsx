@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactPropTypes, useState } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 
 interface TodoItemProps {
@@ -15,6 +15,7 @@ const TodoItem = (ps: TodoItemProps) => (
     <input type="text" value={ps.content} id={`todo-input-${ps.index}`}
       onKeyDown={(e) => ps.handleKeyDown(e, ps.index)}
       onChange={(e) => ps.onChange(e.target.value, ps.index)} />
+    <button className="btn-action">x</button>
   </div>
 )
 function App() {
@@ -33,17 +34,17 @@ function App() {
     }
   ]);
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>, i: number) => {
-    if (e.key === 'Enter') createTodoAtIndex(i);
+    if (e.key === 'Enter') createTodoAtIndex(i + 1);
   }
   const createTodoAtIndex = (i: number) => {
     const newTodos = [...todos];
-    newTodos.splice(i + 1, 0, {
+    newTodos.splice(i, 0, {
       content: '',
       isCompleted: false,
     });
     setTodos(newTodos);
     setTimeout(() => {
-      (document.getElementById(`todo-input-` + (i + 1)) as HTMLElement).focus();
+      (document.getElementById(`todo-input-` + i) as HTMLElement).focus();
     }, 0);
   }
   const updateTodoAtIndex = (content: string, i: number) => {
@@ -60,7 +61,7 @@ function App() {
           ))}
         </ul>
 
-        <button onClick={() => createTodoAtIndex(todos.length)}>Add Todo</button>
+        <button className="btn-action" onClick={() => createTodoAtIndex(todos.length)}>+</button>
       </div>
     </div >
   );
