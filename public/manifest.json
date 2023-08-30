@@ -1,16 +1,16 @@
 {
-  "short_name": "React Todo App",
-  "name": "React & TypeScript Todo App with Drag and Drop",
-  "icons": [
-    {
-      "src": "todo-app.png",
-      "type": "image/png",
-      "sizes": "512x512",
-      "purpose": "any"
-    }
-  ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#725d6b"
+    "short_name": "Toododo",
+    "name": "React & TypeScript Todo App with Drag and Drop",
+    "icons": [
+        {
+            "src": "todo-app.png",
+            "type": "image/png",
+            "sizes": "512x512",
+            "purpose": "any"
+        }
+    ],
+    "start_url": ".",
+    "display": "standalone",
+    "theme_color": "#000000",
+    "background_color": "#725d6b"
 }
