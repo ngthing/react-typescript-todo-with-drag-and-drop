@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 
 interface TodoItemProps extends Todo {
@@ -62,6 +62,7 @@ const TodoList = (ps: TodoListProps) => {
         newTodos[i].isCompleted = !newTodos[i].isCompleted;
         setTodos(newTodos);
     }
+
     return (
         <>
             <div className='todo-list-name'>
@@ -78,30 +79,48 @@ const TodoList = (ps: TodoListProps) => {
                             toggleTodoCompleteAtIndex={toggleTodoCompleteAtIndex} />
                     ))}
                 </ul>
-
-                <button className="btn-action" style={{ 'fontSize': 'large' }}
+            </div>
+            <div className="todo-btns-action">
+                <button className="btn-action" style={{ 'fontSize': 'large', 'marginRight': '10px' }}
                     onClick={() => createTodoAtIndex(todos.length)}>&#43;</button>
+                <button className="btn-action" onClick={() => setTodos([])}>&#x2715;</button>
             </div>
         </>
     )
 }
+const sampleTodos = [
+    {
+        content: 'Welcome to Toododo!',
+        isCompleted: true,
+    },
+    {
+        content: '"Enter" in any todo to add a new todo below it',
+        isCompleted: false,
+    },
+    {
+        content: 'Click + to add a todo in the bottom of the list',
+        isCompleted: false,
+    },
+    {
+        content: 'Click x to remove a todo or remove all in the bottom',
+        isCompleted: false,
+    }
 
+];
 function App() {
-    const [todoName, setTodoName] = useState('Todo')
-    const [todos, setTodos] = useState([
-        {
-            content: '"Enter" in any todo to add a new todo below it',
-            isCompleted: true,
-        },
-        {
-            content: 'Or Click + to add a todo in the bottom of the list',
-            isCompleted: false,
-        },
-        {
-            content: 'Build a todo app in React',
-            isCompleted: false,
-        }
-    ] as Todo[]);
+    const storedTodoName = localStorage.getItem('todoName') ?? 'Toododo';
+    const storedTodos = (JSON.parse(localStorage.getItem('todos') ?? '[]')) as Todo[];
+
+    const [todoName, setTodoName] = useState(storedTodoName.length ? storedTodoName : 'Toododo')
+    const [todos, setTodos] = useState(storedTodos.length ? storedTodos : sampleTodos);
+
+    useEffect(() => {
+        localStorage.setItem('todoName', todoName)
+    }, [todoName]);
+
+    useEffect(() => {
+        localStorage.setItem('todos', JSON.stringify(todos))
+    }, [todos])
 
     return (
         <div className="app">
