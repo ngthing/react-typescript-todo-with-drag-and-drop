@@ -11,6 +11,7 @@ interface TodoItemProps extends Todo {
 
 const TodoItem = (ps: TodoItemProps) => (
     <div className={`todo ${ps.isCompleted && 'todo-is-completed'}`}>
+        <span className='todo-index'>#{ps.index + 1} </span>
         <div className="checkbox" onClick={() => ps.toggleTodoCompleteAtIndex(ps.index)}>
             {ps.isCompleted && (
                 <span>&#x2714;</span>
@@ -77,6 +78,7 @@ const TodoList = (ps: TodoListProps) => {
                             handleKeyDown={handleKeyDown}
                             handleDelete={deleteTodoAtIndex}
                             toggleTodoCompleteAtIndex={toggleTodoCompleteAtIndex} />
+
                     ))}
                 </ul>
             </div>
