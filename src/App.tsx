@@ -9,7 +9,7 @@ interface TodoItemProps extends Todo {
     toggleTodoCompleteAtIndex: (i: number) => void;
 };
 
-const TodoItem = (ps: TodoItemProps) => (
+export const TodoItem = (ps: TodoItemProps) => (
     <div className={`todo ${ps.isCompleted && 'todo-is-completed'}`}>
         <span className='todo-index'>#{ps.index + 1} </span>
         <div className="checkbox" onClick={() => ps.toggleTodoCompleteAtIndex(ps.index)}>
@@ -17,10 +17,10 @@ const TodoItem = (ps: TodoItemProps) => (
                 <span>&#x2714;</span>
             )}
         </div>
-        <input type="text" value={ps.content} id={`todo-input-${ps.index}`}
+        <input type="text" value={ps.content} id={`todo-input-${ps.index}`} aria-label={`todo-input-${ps.index}`}
             onKeyDown={(e) => ps.handleKeyDown(e, ps.index)}
             onChange={(e) => ps.onChange(e.target.value, ps.index)} />
-        <button className="btn-action" onClick={() => ps.handleDelete(ps.index)}>&#x2715;</button>
+        <button className="btn-action" aria-label='delete-todo' onClick={() => ps.handleDelete(ps.index)}>&#x2715;</button>
     </div>
 )
 interface Todo {
@@ -32,7 +32,7 @@ interface TodoListProps {
     onNameChange: (name: string) => void;
     setTodos: (todos: Todo[]) => void;
 }
-const TodoList = (ps: TodoListProps) => {
+export const TodoList = (ps: TodoListProps) => {
     const todoName = ps.name;
     const todos = ps.todos;
     const setTodos = ps.setTodos;
@@ -67,11 +67,11 @@ const TodoList = (ps: TodoListProps) => {
     return (
         <>
             <div className='todo-list-name'>
-                <input type="text" value={todoName}
+                <input type="text" value={todoName} id='todoName' aria-label='todoName'
                     onChange={(e) => ps.onNameChange(e.target.value)} />
             </div>
             <div className="todo-list-container">
-                <ul className="todo-list">
+                <ul className="todo-list" aria-label="todo-list">
                     {ps.todos.map((todo, i) => (
                         <TodoItem key={`todo-` + i} {...todo} index={i}
                             onChange={updateTodoAtIndex}
@@ -83,14 +83,16 @@ const TodoList = (ps: TodoListProps) => {
                 </ul>
             </div>
             <div className="todo-btns-action">
-                <button className="btn-action" style={{ 'fontSize': 'large', 'marginRight': '10px' }}
+                <button className="btn-action" aria-label='add-todo'
+                    style={{ 'fontSize': 'large', 'marginRight': '10px' }}
                     onClick={() => createTodoAtIndex(todos.length)}>&#43;</button>
-                <button className="btn-action" onClick={() => setTodos([])}>&#x2715;</button>
+                <button className="btn-action" aria-label='delete-todo-list'
+                    onClick={() => setTodos([])}>&#x2715;</button>
             </div>
         </>
     )
 }
-const sampleTodos = [
+export const sampleTodos = [
     {
         content: 'Welcome to Toododo!',
         isCompleted: true,
