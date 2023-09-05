@@ -1,4 +1,5 @@
 import { Todo, TodoItem } from './TodoItem';
+import { DragDropContext, Droppable, Draggable, DropResult } from "react-beautiful-dnd";
 
 interface TodoListProps {
     name: string;
@@ -62,16 +63,16 @@ export const TodoList = (ps: TodoListProps) => {
                     onChange={(e) => ps.onNameChange(e.target.value)} />
             </div>
             <div className="todo-list-container">
-                <ul className="todo-list" aria-label="todo-list">
-                    {ps.todos.map((todo, i) => (
-                        <TodoItem key={`todo-` + i} {...todo} index={i}
-                            onChange={updateTodoAtIndex}
-                            handleKeyDown={handleKeyDown}
-                            handleDelete={deleteTodoAtIndex}
-                            toggleTodoCompleteAtIndex={toggleTodoCompleteAtIndex} />
 
-                    ))}
-                </ul>
+                {ps.todos.map((todo, i) => (
+                    <TodoItem key={`todo-` + i} {...todo} index={i}
+                        onChange={updateTodoAtIndex}
+                        handleKeyDown={handleKeyDown}
+                        handleDelete={deleteTodoAtIndex}
+                        toggleTodoCompleteAtIndex={toggleTodoCompleteAtIndex} />
+
+                ))}
+
             </div>
             <div className="todo-btns-action">
                 <button className="btn-action" aria-label='add-todo'
