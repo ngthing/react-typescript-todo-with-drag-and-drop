@@ -1,5 +1,6 @@
-import { Todo, TodoItem } from './TodoItem';
-import { DropResult } from "react-beautiful-dnd";
+
+import { Todo, DragableTodoItem } from './TodoItem';
+import { DragDropContext, DropResult, Droppable } from "react-beautiful-dnd";
 
 interface TodoListNameProps {
     name: string;
@@ -83,19 +84,27 @@ export const TodoList = (ps: TodoListProps) => {
     return (
         <>
             <TodoListName name={todoName} onNameChange={ps.onNameChange} />
-            <div className="todo-list-container">
+            <DragDropContext onDragEnd={onDragEnd}>
 
-                {ps.todos.map((todo, i) => (
-                    <TodoItem key={`todo-` + i} {...todo} index={i}
-                        onChange={updateTodoAtIndex}
-                        handleKeyDown={handleKeyDown}
-                        handleDelete={deleteTodoAtIndex}
-                        toggleTodoCompleteAtIndex={toggleTodoCompleteAtIndex} />
+                <Droppable droppableId='droppable'>
+                    {provided => (
+                        <div className="todo-list-container"
+                            ref={provided.innerRef}
+                            {...provided.droppableProps}
+                        >
+                            {ps.todos.map((todo, i) => (
+                                <DragableTodoItem key={todo.id} index={i} {...todo}
+                                    onChange={updateTodoAtIndex}
+                                    handleKeyDown={handleKeyDown}
+                                    handleDelete={deleteTodoAtIndex}
+                                    toggleTodoCompleteAtIndex={toggleTodoCompleteAtIndex} />
 
-                ))}
-
-            </div>
-
+                            ))}
+                            {provided.placeholder}
+                        </div>
+                    )}
+                </Droppable>
+            </DragDropContext>
             <TodoListActions
                 createTodo={() => createTodoAtIndex(todos.length)}
                 deleteTodoList={() => setTodos([])} />
