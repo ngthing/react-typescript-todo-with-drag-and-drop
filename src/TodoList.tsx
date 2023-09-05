@@ -1,12 +1,37 @@
 import { Todo, TodoItem } from './TodoItem';
-import { DragDropContext, Droppable, Draggable, DropResult } from "react-beautiful-dnd";
+import { DropResult } from "react-beautiful-dnd";
+
+interface TodoListNameProps {
+    name: string;
+    onNameChange: (name: string) => void;
+}
+const TodoListName = (ps: TodoListNameProps) => (
+    <div className='todo-list-name'>
+        <input type="text" value={ps.name} id='todoName' aria-label='todoName'
+            onChange={(e) => ps.onNameChange(e.target.value)} />
+    </div>
+)
+interface TodoListActionsProps {
+    createTodo: () => void;
+    deleteTodoList: () => void;
+}
+const TodoListActions = (ps: TodoListActionsProps) => (
+    <div className="todo-btns-action">
+        <button className="btn-action" aria-label='add-todo'
+            style={{ 'fontSize': 'large', 'marginRight': '10px' }}
+            onClick={() => ps.createTodo()}>&#43;</button>
+        <button className="btn-action" aria-label='delete-todo-list'
+            onClick={() => ps.deleteTodoList()}>&#x2715;</button>
+    </div>
+);
 
 interface TodoListProps {
     name: string;
     todos: Todo[];
     onNameChange: (name: string) => void;
     setTodos: (todos: Todo[]) => void;
-}
+};
+
 export const TodoList = (ps: TodoListProps) => {
     const todoName = ps.name;
     const todos = ps.todos;
@@ -17,7 +42,7 @@ export const TodoList = (ps: TodoListProps) => {
     const createTodoAtIndex = (i: number) => {
         const newTodos = [...todos];
         newTodos.splice(i, 0, {
-            id: `todo-${todos.length + 1}`,
+            id: `todo-${Date.now()}`,
             content: '',
             isCompleted: false,
         });
@@ -55,13 +80,9 @@ export const TodoList = (ps: TodoListProps) => {
         setTodos(items);
 
     };
-
     return (
         <>
-            <div className='todo-list-name'>
-                <input type="text" value={todoName} id='todoName' aria-label='todoName'
-                    onChange={(e) => ps.onNameChange(e.target.value)} />
-            </div>
+            <TodoListName name={todoName} onNameChange={ps.onNameChange} />
             <div className="todo-list-container">
 
                 {ps.todos.map((todo, i) => (
@@ -74,13 +95,10 @@ export const TodoList = (ps: TodoListProps) => {
                 ))}
 
             </div>
-            <div className="todo-btns-action">
-                <button className="btn-action" aria-label='add-todo'
-                    style={{ 'fontSize': 'large', 'marginRight': '10px' }}
-                    onClick={() => createTodoAtIndex(todos.length)}>&#43;</button>
-                <button className="btn-action" aria-label='delete-todo-list'
-                    onClick={() => setTodos([])}>&#x2715;</button>
-            </div>
+
+            <TodoListActions
+                createTodo={() => createTodoAtIndex(todos.length)}
+                deleteTodoList={() => setTodos([])} />
         </>
     )
 }
