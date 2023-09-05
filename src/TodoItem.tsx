@@ -1,6 +1,6 @@
 
 export interface Todo {
-    content: string; isCompleted: boolean
+    id: string; content: string; isCompleted: boolean
 }
 
 interface TodoItemProps extends Todo {
