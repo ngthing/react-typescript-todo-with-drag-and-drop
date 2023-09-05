@@ -16,6 +16,7 @@ export const TodoList = (ps: TodoListProps) => {
     const createTodoAtIndex = (i: number) => {
         const newTodos = [...todos];
         newTodos.splice(i, 0, {
+            id: `todo-${todos.length + 1}`,
             content: '',
             isCompleted: false,
         });
@@ -37,6 +38,22 @@ export const TodoList = (ps: TodoListProps) => {
         newTodos[i].isCompleted = !newTodos[i].isCompleted;
         setTodos(newTodos);
     }
+
+    // a little function to help us with reordering the result
+    const reorder = (list: Todo[], startIndex: number, endIndex: number) => {
+        const result = Array.from(list);
+        const [removed] = result.splice(startIndex, 1);
+        result.splice(endIndex, 0, removed);
+
+        return result;
+    };
+
+    const onDragEnd = (result: DropResult) => {
+        if (!result.destination) return;
+        const items = reorder(todos, result.source.index, result.destination.index);
+        setTodos(items);
+
+    };
 
     return (
         <>
