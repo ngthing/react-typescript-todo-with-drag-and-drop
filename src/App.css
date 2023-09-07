@@ -1,5 +1,15 @@
+:root {
+    --background: #f9f2f2;
+    --textColor: rgb(43, 39, 39);
+    --checkboxBorder: #3d9863;
+    --checkboxColor: #6ec26eb5;
+    --white: #ffffff;
+    --todoBorder: #c0bbbb8f;
+}
+
 body {
-    background-color: #725d6b;
+    background-color: var(--background);
+    color: var(--textColor);
     min-height: 100vh;
 }
 
@@ -26,7 +36,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    color: white;
+    /* color: white; */
     padding-bottom: 20px;
 }
 
@@ -34,20 +44,20 @@ body {
     display: flex;
     align-items: center;
     margin: 0.25rem 0;
-    border: solid #c0bbbb8f;
+    border: solid var(--todoBorder);
     padding: 2px 10px;
     border-radius: 16px;
     min-width: 50%;
 }
 
 .todo-is-completed .checkbox {
-    color: #433c3c;
-    background: #f0e5e5;
+    /* color: #433c3c; */
+    background: var(--checkboxColor);
 }
 
 .todo-is-completed input {
     text-decoration: line-through;
-    text-decoration-color: #c6b9b9;
+    text-decoration-color: #ada1a1;
     text-decoration-thickness: 2px;
 }
 
@@ -62,23 +72,18 @@ body {
     justify-content: center;
     align-items: center;
     transition: background-color .2s ease-in-out;
-    border: 1px solid #fff;
+    border: 1px solid var(--checkboxBorder);
 }
 
 .checkbox:hover {
-    background: rgba(255, 255, 255, 0.25);
+    background: var(--checkboxColor);
     border: 1px solid rgba(255, 255, 255, 0);
-}
-
-.checkbox-checked {
-    color: #000;
-    background: #fff;
 }
 
 input {
     border: none;
     background: transparent;
-    color: white;
+    /* color: white; */
     font-size: 1.4rem;
     outline: none;
     width: 100%;
