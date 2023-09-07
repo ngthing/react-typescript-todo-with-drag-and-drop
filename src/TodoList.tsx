@@ -1,6 +1,7 @@
 
 import { Todo, DragableTodoItem } from './TodoItem';
-import { DragDropContext, DropResult, Droppable } from "react-beautiful-dnd";
+import { DragDropContext, DropResult } from "react-beautiful-dnd";
+import { StrictModeDroppable } from './StrictModeDroppable';
 
 interface TodoListNameProps {
     name: string;
@@ -86,7 +87,7 @@ export const TodoList = (ps: TodoListProps) => {
             <TodoListName name={todoName} onNameChange={ps.onNameChange} />
             <DragDropContext onDragEnd={onDragEnd}>
 
-                <Droppable droppableId='droppable'>
+                <StrictModeDroppable droppableId='droppable'>
                     {provided => (
                         <div className="todo-list-container"
                             ref={provided.innerRef}
@@ -103,7 +104,7 @@ export const TodoList = (ps: TodoListProps) => {
                             {provided.placeholder}
                         </div>
                     )}
-                </Droppable>
+                </StrictModeDroppable>
             </DragDropContext>
             <TodoListActions
                 createTodo={() => createTodoAtIndex(todos.length)}
