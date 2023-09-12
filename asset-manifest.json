@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/react-typescript-todo-with-drag-and-drop/static/css/main.becd0e44.css",
-    "main.js": "/react-typescript-todo-with-drag-and-drop/static/js/main.062e7803.js",
+    "main.css": "/react-typescript-todo-with-drag-and-drop/static/css/main.b72e1b15.css",
+    "main.js": "/react-typescript-todo-with-drag-and-drop/static/js/main.25e06ca6.js",
     "static/js/787.8764b5d3.chunk.js": "/react-typescript-todo-with-drag-and-drop/static/js/787.8764b5d3.chunk.js",
     "index.html": "/react-typescript-todo-with-drag-and-drop/index.html",
-    "main.becd0e44.css.map": "/react-typescript-todo-with-drag-and-drop/static/css/main.becd0e44.css.map",
-    "main.062e7803.js.map": "/react-typescript-todo-with-drag-and-drop/static/js/main.062e7803.js.map",
+    "main.b72e1b15.css.map": "/react-typescript-todo-with-drag-and-drop/static/css/main.b72e1b15.css.map",
+    "main.25e06ca6.js.map": "/react-typescript-todo-with-drag-and-drop/static/js/main.25e06ca6.js.map",
     "787.8764b5d3.chunk.js.map": "/react-typescript-todo-with-drag-and-drop/static/js/787.8764b5d3.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.becd0e44.css",
-    "static/js/main.062e7803.js"
+    "static/css/main.b72e1b15.css",
+    "static/js/main.25e06ca6.js"
   ]
 }
