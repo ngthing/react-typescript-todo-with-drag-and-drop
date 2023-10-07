@@ -43,10 +43,12 @@ export const DragableTodoItem = (ps: TodoItemProps) => (
                         <span>&#x2714;</span>
                     )}
                 </div>
-                <input type="text" value={ps.content} id={`todo-input-${ps.index}`} aria-label={`todo-input-${ps.index}`}
+                <div className="todo-text" contentEditable="true"
+                >{ps.content}</div>
+                {/* <input type="text" value={ps.content} id={`todo-input-${ps.index}`} aria-label={`todo-input-${ps.index}`}
                     onKeyDown={(e) => ps.handleKeyDown(e, ps.index)}
-                    onChange={(e) => ps.onChange(e.target.value, ps.index)} />
-                <button className="btn-action" aria-label='delete-todo' onClick={() => ps.handleDelete(ps.index)}>&#x2715;</button>
+                    onChange={(e) => ps.onChange(e.target.value, ps.index)} /> */}
+                <button className="btn-action btn-delete-todo" aria-label='delete-todo' onClick={() => ps.handleDelete(ps.index)}>&#x2715;</button>
             </div>
         )}
     </Draggable>
