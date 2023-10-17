@@ -13,6 +13,21 @@ const TodoListName = (ps: TodoListNameProps) => (
             onChange={(e) => ps.onNameChange(e.target.value)} />
     </div>
 )
+interface TodoListStatsProps {
+    completed: number;
+    total: number
+}
+const TodoListStats = (ps: TodoListStatsProps) => (
+    <div className='todo-list-stats'>
+        Completed {ps.completed} / {ps.total}
+        {ps.completed ? (<span className='completedCheck'>&#x2714;</span>) : (<></>)}
+        {(ps.completed === ps.total && ps.total > 0) ? <span className='allDone'> well done!!  👏 🤩</span> : (<></>)}
+    </div>
+)
+const getTodoListStats = (todos: Todo[]): TodoListStatsProps => {
+    const completed = todos.reduce((completed, todo) => completed += todo.isCompleted ? 1 : 0, 0)
+    return { completed: completed, total: todos.length };
+}
 interface TodoListActionsProps {
     createTodo: () => void;
     deleteTodoList: () => void;
@@ -38,6 +53,8 @@ export const TodoList = (ps: TodoListProps) => {
     const todoName = ps.name;
     const todos = ps.todos;
     const setTodos = ps.setTodos;
+    const todoListStats = getTodoListStats(todos)
+
     const handleKeyDown = (e: React.KeyboardEvent<HTMLElement>, i: number) => {
         if (e.key === 'Enter') createTodoAtIndex(i + 1);
     }
@@ -85,6 +102,7 @@ export const TodoList = (ps: TodoListProps) => {
     return (
         <>
             <TodoListName name={todoName} onNameChange={ps.onNameChange} />
+            <TodoListStats completed={todoListStats.completed} total={todoListStats.total} />
             <DragDropContext onDragEnd={onDragEnd}>
 
                 <StrictModeDroppable droppableId='droppable'>
