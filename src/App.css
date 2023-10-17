@@ -22,6 +22,12 @@ body {
     font-size: 3rem;
     text-align: center;
     cursor: pointer;
+    border: none;
+    background: transparent;
+    outline: none;
+    width: 100%;
+    font-family: inherit;
+    height: fit-content;
 }
 
 .header {
@@ -55,8 +61,43 @@ body {
 
 .todo-text {
     width: 100%;
-    font-size: 1.2rem;
     padding-right: 3%;
+    display: inline-block;
+}
+
+.todoTextarea {
+    border: none;
+    background: transparent;
+    font-size: 1.2rem;
+    outline: none;
+    width: 100%;
+    font-family: inherit;
+    text-wrap: balance;
+    overflow: auto;
+    resize: none;
+    height: fit-content;
+}
+
+.todoTextarea::-webkit-scrollbar-thumb {
+    background: var(--todoBorder);
+    /* Color of the thumb */
+}
+
+.todoTextarea::-webkit-scrollbar-thumb:hover {
+    background: var(--todoBorder);
+    /* Color of the thumb on hover */
+}
+
+/* Style for the track (the non-draggable part of the scrollbar) */
+.todoTextarea::-webkit-scrollbar-track {
+    background: var(--background);
+    /* Color of the track */
+}
+
+/* Style for the scrollbar itself (including the arrows) */
+.todoTextarea::-webkit-scrollbar {
+    width: 4px;
+    /* Width of the scrollbar */
 }
 
 .todo-is-completed .checkbox {
@@ -64,7 +105,7 @@ body {
     background: var(--checkboxColor);
 }
 
-.todo-is-completed input {
+.todo-is-completed .todoTextarea {
     text-decoration: line-through;
     text-decoration-color: #ada1a1;
     text-decoration-thickness: 2px;
@@ -87,15 +128,6 @@ body {
 .checkbox:hover {
     background: var(--checkboxColor);
     border: 1px solid rgba(255, 255, 255, 0);
-}
-
-input {
-    border: none;
-    background: transparent;
-    /* color: white; */
-    font-size: 1.4rem;
-    outline: none;
-    width: 100%;
 }
 
 .btn-action {

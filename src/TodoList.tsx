@@ -38,7 +38,7 @@ export const TodoList = (ps: TodoListProps) => {
     const todoName = ps.name;
     const todos = ps.todos;
     const setTodos = ps.setTodos;
-    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>, i: number) => {
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLElement>, i: number) => {
         if (e.key === 'Enter') createTodoAtIndex(i + 1);
     }
     const createTodoAtIndex = (i: number) => {

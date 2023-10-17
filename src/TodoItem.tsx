@@ -9,7 +9,7 @@ interface TodoItemProps extends Todo {
     index: number;
     onChange: (content: string, i: number) => void;
     handleDelete: (i: number) => void;
-    handleKeyDown: (e: React.KeyboardEvent<HTMLInputElement>, i: number) => void;
+    handleKeyDown: (e: React.KeyboardEvent<HTMLElement>, i: number) => void;
     toggleTodoCompleteAtIndex: (i: number) => void;
     mRef?: Ref<HTMLDivElement> | null;
 };
@@ -43,11 +43,11 @@ export const DragableTodoItem = (ps: TodoItemProps) => (
                         <span>&#x2714;</span>
                     )}
                 </div>
-                <div className="todo-text" contentEditable="true"
-                >{ps.content}</div>
-                {/* <input type="text" value={ps.content} id={`todo-input-${ps.index}`} aria-label={`todo-input-${ps.index}`}
-                    onKeyDown={(e) => ps.handleKeyDown(e, ps.index)}
-                    onChange={(e) => ps.onChange(e.target.value, ps.index)} /> */}
+                <div className="todo-text">
+                    <textarea className='todoTextarea' wrap="off" value={ps.content} id={`todo-input-${ps.index}`} aria-label={`todo-input-${ps.index}`}
+                        onKeyDown={(e) => ps.handleKeyDown(e, ps.index)}
+                        onChange={(e) => ps.onChange(e.target.value, ps.index)} />
+                </div>
                 <button className="btn-action btn-delete-todo" aria-label='delete-todo' onClick={() => ps.handleDelete(ps.index)}>&#x2715;</button>
             </div>
         )}
