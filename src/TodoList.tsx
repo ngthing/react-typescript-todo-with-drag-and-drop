@@ -20,8 +20,8 @@ interface TodoListStatsProps {
 const TodoListStats = (ps: TodoListStatsProps) => (
     <div className='todo-list-stats'>
         Completed {ps.completed} / {ps.total}
-        {ps.completed ? (<span className='completedCheck'>&#x2714;</span>) : (<></>)}
-        {(ps.completed === ps.total && ps.total > 0) ? <span className='allDone'> well done!!  👏 🤩</span> : (<></>)}
+        {ps.completed && (<span className='completedCheck'>&#x2714;</span>)}
+        {(ps.completed === ps.total && ps.total > 0) && <span className='allDone'> well done!!  👏 🤩</span>}
     </div>
 )
 const getTodoListStats = (todos: Todo[]): TodoListStatsProps => {
@@ -93,6 +93,12 @@ export const TodoList = (ps: TodoListProps) => {
         return result;
     };
 
+    const uncheckAllTodo = () => {
+        const newTodos = [...todos];
+        newTodos.forEach(todo => todo.isCompleted = false);
+        setTodos(newTodos);
+    }
+
     const onDragEnd = (result: DropResult) => {
         if (!result.destination) return;
         const items = reorder(todos, result.source.index, result.destination.index);
@@ -103,6 +109,8 @@ export const TodoList = (ps: TodoListProps) => {
         <>
             <TodoListName name={todoName} onNameChange={ps.onNameChange} />
             <TodoListStats completed={todoListStats.completed} total={todoListStats.total} />
+            {todoListStats.total && todoListStats.completed === todoListStats.total &&
+                (<div className='uncheck-all'><button onClick={() => uncheckAllTodo()}>Uncheck All ♻️</button></div>)}
             <DragDropContext onDragEnd={onDragEnd}>
 
                 <StrictModeDroppable droppableId='droppable'>

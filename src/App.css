@@ -130,7 +130,8 @@ body {
     border: 1px solid rgba(255, 255, 255, 0);
 }
 
-.todo-list-stats {
+.todo-list-stats,
+.uncheck-all {
     display: flex;
     justify-content: center;
     padding-bottom: 10px;
@@ -182,4 +183,11 @@ body {
     top: 0;
     right: 1px;
     border-radius: 50%;
+}
+
+.uncheck-all button {
+    border: none;
+    cursor: pointer;
+    background: none;
+    font-size: 1rem;
 }
