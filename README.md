@@ -1,6 +1,9 @@
-# ☑ React TypeScript Todo App with drag and drop 
 
-![Toododo-drag-drop-Sep-12-2023](https://github.com/ngthing/react-typescript-todo-with-drag-and-drop/assets/19722325/cdcc0069-85cd-41ca-a574-bcd8ccbbcc36)
+# ✅ Toododo - Not your average Todo app
+
+## But basically a React TypeScript Todo App with drag and drop 
+![Toododo-demo-Oct-18-2023](https://github.com/ngthing/toododo/assets/19722325/f633d6bc-d21b-4bf0-af8d-356e77ccc052)
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
