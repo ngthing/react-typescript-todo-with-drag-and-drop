@@ -20,8 +20,8 @@ interface TodoListStatsProps {
 const TodoListStats = (ps: TodoListStatsProps) => (
     <div className='todo-list-stats'>
         Completed {ps.completed} / {ps.total}
-        {ps.completed && (<span className='completedCheck'>&#x2714;</span>)}
-        {(ps.completed === ps.total && ps.total > 0) && <span className='allDone'> well done!!  👏 🤩</span>}
+        {ps.completed > 0 && (<span className='completedCheck'>&#x2714;</span>)}
+        {(ps.completed === ps.total && ps.total) && (<span className='allDone'> well done!!  👏 🤩</span>)}
     </div>
 )
 const getTodoListStats = (todos: Todo[]): TodoListStatsProps => {
