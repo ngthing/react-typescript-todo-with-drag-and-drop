@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/toododo/static/css/main.209412c5.css",
-    "main.js": "/toododo/static/js/main.66fd7fbf.js",
+    "main.css": "/toododo/static/css/main.bb6d277d.css",
+    "main.js": "/toododo/static/js/main.8abe7e32.js",
     "static/js/787.228744f2.chunk.js": "/toododo/static/js/787.228744f2.chunk.js",
     "index.html": "/toododo/index.html",
-    "main.209412c5.css.map": "/toododo/static/css/main.209412c5.css.map",
-    "main.66fd7fbf.js.map": "/toododo/static/js/main.66fd7fbf.js.map",
+    "main.bb6d277d.css.map": "/toododo/static/css/main.bb6d277d.css.map",
+    "main.8abe7e32.js.map": "/toododo/static/js/main.8abe7e32.js.map",
     "787.228744f2.chunk.js.map": "/toododo/static/js/787.228744f2.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.209412c5.css",
-    "static/js/main.66fd7fbf.js"
+    "static/css/main.bb6d277d.css",
+    "static/js/main.8abe7e32.js"
   ]
 }
