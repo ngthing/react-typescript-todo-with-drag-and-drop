@@ -55,7 +55,6 @@ body {
     border-radius: 10px;
     min-width: 50%;
     width: 80%;
-    max-width: 400px;
     position: relative;
 }
 
@@ -72,7 +71,7 @@ body {
     outline: none;
     width: 100%;
     font-family: inherit;
-    text-wrap: balance;
+    text-wrap: pretty;
     overflow: auto;
     resize: none;
     height: fit-content;
