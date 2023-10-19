@@ -12,7 +12,26 @@ function App() {
 
     const [todoName, setTodoName] = useState(storedTodoName.length ? storedTodoName : 'Toododo')
     const [todos, setTodos] = useState(storedTodos.length ? storedTodos : sampleTodos);
+    const [dimensions, setDimensions] = useState({
+        height: window.innerHeight,
+        width: window.innerWidth
+    })
+    useEffect(() => {
+        const handleResize = () => {
+            setDimensions({
+                height: window.innerHeight,
+                width: window.innerWidth
+            })
+        }
 
+        // Attach the event listener to the window object
+        window.addEventListener('resize', handleResize);
+
+        // Remove the event listener when the component unmounts
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
     useEffect(() => {
         localStorage.setItem('todoName', todoName)
     }, [todoName]);
@@ -22,7 +41,7 @@ function App() {
     }, [todos])
 
     return (
-        <div className="app">
+        <div className="app" data-width={dimensions.width}>
             <TodoList todos={todos} name={todoName} onNameChange={setTodoName} setTodos={setTodos} />
         </div >
     );
