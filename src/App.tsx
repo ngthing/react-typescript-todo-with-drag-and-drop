@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Todo } from './TodoItem';
 import { TodoList } from './TodoList';
 import { sampleTodos } from './data';
@@ -43,6 +43,10 @@ function App() {
     return (
         <div className="app" data-width={dimensions.width}>
             <TodoList todos={todos} name={todoName} onNameChange={setTodoName} setTodos={setTodos} />
+            <footer>
+                <div className='footerText'>🌱 Inspired by the <a href='https://github.com/ngthing/toododo' target='blank'>Internet</a>.
+                    Made by <a href='https://justthinguyen.com' target='blank'>Thi Nguyen</a>. Thanks for stopping by and have a beautiful day! 🌱</div>
+            </footer>
         </div >
     );
 }

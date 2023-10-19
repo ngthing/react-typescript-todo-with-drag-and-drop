@@ -32,7 +32,7 @@ const todoTextareaHeight = (content: string): number => {
     // it works! muahaha - why these formula and numbers - no comment. 
     // but 25px is the min width i want to set.
     const x = 25 + Math.floor(content.length * 12 / window.innerWidth) * 25;
-    console.log([window.innerWidth, content.length, x])
+    // console.log([window.innerWidth, content.length, x])
     return x;
 }
 
