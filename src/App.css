@@ -18,6 +18,10 @@ body {
     overflow: scroll;
 }
 
+.main-container::-webkit-scrollbar {
+    display: none;
+}
+
 .todo-list-name {
     padding-top: 10vh;
     padding-bottom: 5vh;
