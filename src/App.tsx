@@ -42,7 +42,9 @@ function App() {
 
     return (
         <div className="app" data-width={dimensions.width}>
-            <TodoList todos={todos} name={todoName} onNameChange={setTodoName} setTodos={setTodos} />
+            <div className='main-container'>
+                <TodoList todos={todos} name={todoName} onNameChange={setTodoName} setTodos={setTodos} />
+            </div>
             <footer>
                 <div className='footerText'>🌱 Inspired by the <a href='https://github.com/ngthing/toododo' target='blank'>Internet</a>.
                     Made by <a href='https://justthinguyen.com' target='blank'>Thi Nguyen</a>. Thanks for stopping by and have a beautiful day! 🌱</div>
