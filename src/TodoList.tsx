@@ -72,7 +72,7 @@ export const TodoList = (ps: TodoListProps) => {
     }
     const updateTodoAtIndex = (content: string, i: number) => {
         const newTodos = [...todos];
-        newTodos[i].content = content;
+        newTodos[i].content = content.replace(/[\n\r]/g, '');
         setTodos(newTodos);
     }
     const deleteTodoAtIndex = (i: number) => {
