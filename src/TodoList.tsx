@@ -19,9 +19,10 @@ interface TodoListStatsProps {
 }
 const TodoListStats = (ps: TodoListStatsProps) => (
     <div className='todo-list-stats'>
-        Completed {ps.completed} / {ps.total}
+        {ps.total > 0 ? (ps.completed > 0 && (<span>Completed {ps.completed} / {ps.total}</span>))
+            : (<span>Add something to do 🎯</span>)}
         {ps.completed > 0 && (<span className='completedCheck'>&#x2714;</span>)}
-        {(ps.completed === ps.total && ps.total) && (<span className='allDone'> well done!!  👏 🤩</span>)}
+        {(ps.completed === ps.total && ps.total > 0) && (<span className='allDone'> well done!!  👏 🤩</span>)}
     </div>
 )
 const getTodoListStats = (todos: Todo[]): TodoListStatsProps => {
@@ -109,7 +110,7 @@ export const TodoList = (ps: TodoListProps) => {
         <>
             <TodoListName name={todoName} onNameChange={ps.onNameChange} />
             <TodoListStats completed={todoListStats.completed} total={todoListStats.total} />
-            {todoListStats.total && todoListStats.completed === todoListStats.total &&
+            {(todoListStats.total > 0) && todoListStats.completed === todoListStats.total &&
                 (<div className='uncheck-all'><button onClick={() => uncheckAllTodo()}>Uncheck All ♻️</button></div>)}
             <DragDropContext onDragEnd={onDragEnd}>
 
