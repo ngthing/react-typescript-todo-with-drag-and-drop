@@ -1,9 +1,9 @@
 {
     "short_name": "Toododo",
-    "name": "React & TypeScript Todo App with Drag and Drop",
+    "name": "Toododo",
     "icons": [
         {
-            "src": "todo-app.png",
+            "src": "toododo-icon.png",
             "type": "image/png",
             "sizes": "512x512",
             "purpose": "any"
