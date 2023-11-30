@@ -34,7 +34,7 @@ body {
     border: none;
     background: transparent;
     outline: none;
-    width: 100%;
+    width: 90%;
     font-family: inherit;
     height: fit-content;
 }
@@ -84,6 +84,10 @@ body {
     overflow: auto;
     resize: none;
     height: fit-content;
+    /* necessary for line break in textarea works in mobile browser */
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    white-space: pre-line;
 }
 
 .todoTextarea::-webkit-scrollbar-thumb {
@@ -201,15 +205,17 @@ body {
 }
 
 footer {
-    position: fixed;
     bottom: 5px;
     left: 20%;
     right: 20%;
     text-align: center;
+    padding-bottom: 5px;
 }
 
 .footerText {
     font-family: monospace;
+    padding-bottom: 3%;
+    padding-top: 5%;
 }
 
 footer a {
