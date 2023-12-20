@@ -172,10 +172,8 @@ body {
 .btn-action {
     border-color: transparent;
     background: var(--actionBtnColor);
-    border-radius: 20%;
     color: var(--btnTextColor);
     cursor: pointer;
-    height: 25px;
 }
 
 .btn-action:hover {
@@ -196,7 +194,7 @@ body {
     position: absolute;
     top: 0;
     right: 1px;
-    border-radius: 100%;
+    border-radius: 50%;
 }
 
 .uncheck-all button {

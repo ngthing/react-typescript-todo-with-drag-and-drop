@@ -2,6 +2,11 @@
 import { Todo, DragableTodoItem } from './TodoItem';
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { StrictModeDroppable } from './StrictModeDroppable';
+import { IconButton, Tooltip } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
+import ClearIcon from '@mui/icons-material/Clear';
+import DoneAllIcon from '@mui/icons-material/DoneAll';
+import UnpublishedIcon from '@mui/icons-material/Unpublished';
 
 interface TodoListNameProps {
     name: string;
@@ -35,11 +40,29 @@ interface TodoListActionsProps {
 }
 const TodoListActions = (ps: TodoListActionsProps) => (
     <div className="todo-btns-action">
-        <button className="btn-action" aria-label='add-todo'
-            style={{ 'fontSize': 'large', 'marginRight': '10px' }}
-            onClick={() => ps.createTodo()}>&#43;</button>
-        <button className="btn-action" aria-label='delete-todo-list'
-            onClick={() => ps.deleteTodoList()}>&#x2715;</button>
+        <Tooltip title="Check All">
+            <IconButton className="btn-action" aria-label='add-todo' sx={{ mr: 1 }}
+                onClick={() => ps.createTodo()}><DoneAllIcon></DoneAllIcon>
+            </IconButton>
+        </Tooltip>
+        <Tooltip title="Uncheck All">
+            <IconButton className="btn-action" aria-label='add-todo' sx={{ mr: 1 }}
+                onClick={() => ps.createTodo()}><UnpublishedIcon></UnpublishedIcon>
+            </IconButton>
+        </Tooltip>
+
+        <Tooltip title="Add One">
+            <IconButton className="btn-action" aria-label='add-todo' sx={{ mr: 1 }}
+                onClick={() => ps.createTodo()}><AddIcon></AddIcon>
+            </IconButton>
+        </Tooltip>
+        <Tooltip title="Delete All">
+            <IconButton className="btn-action" aria-label='delete-todo-list'
+                onClick={() => ps.deleteTodoList()}>
+                <ClearIcon></ClearIcon>
+            </IconButton>
+        </Tooltip>
+
     </div>
 );
 
