@@ -8,6 +8,8 @@ describe('App', () => {
         expect(screen.getByLabelText('todoName')).toBeInTheDocument();
         expect(screen.getByLabelText('add-todo')).toBeInTheDocument();
         expect(screen.getByLabelText('delete-todo-list')).toBeInTheDocument();
+        expect(screen.getByLabelText('check-all-todo')).toBeInTheDocument();
+        expect(screen.getByLabelText('uncheck-all-todo')).toBeInTheDocument();
     });
 });
 

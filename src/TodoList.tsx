@@ -43,12 +43,12 @@ interface TodoListActionsProps {
 const TodoListActions = (ps: TodoListActionsProps) => (
     <div className="todo-btns-action">
         <Tooltip title="Check All">
-            <IconButton className="btn-action" aria-label='add-todo' sx={{ mr: 1 }}
+            <IconButton className="btn-action" aria-label='check-all-todo' sx={{ mr: 1 }}
                 onClick={() => ps.checkAll()}><DoneAllIcon></DoneAllIcon>
             </IconButton>
         </Tooltip>
         <Tooltip title="Uncheck All">
-            <IconButton className="btn-action" aria-label='add-todo' sx={{ mr: 1 }}
+            <IconButton className="btn-action" aria-label='uncheck-all-todo' sx={{ mr: 1 }}
                 onClick={() => ps.uncheckAll()}><UnpublishedIcon></UnpublishedIcon>
             </IconButton>
         </Tooltip>
