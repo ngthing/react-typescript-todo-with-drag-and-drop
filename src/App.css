@@ -5,6 +5,9 @@
     --checkboxColor: #6ec26eb5;
     --white: #ffffff;
     --todoBorder: #c0bbbb8f;
+    --btnTextColor: #2f2b2b;
+    --actionBtnColor: #ece2e2;
+    --actionBtnHoveredColor: #c6b9b9;
 }
 
 body {
@@ -168,16 +171,13 @@ body {
 
 .btn-action {
     border-color: transparent;
-    background: #c6b9b9;
-    border-radius: 45%;
-    color: #2f2b2b;
+    background: var(--actionBtnColor);
+    color: var(--btnTextColor);
     cursor: pointer;
-    width: 30px;
-    height: 25px;
 }
 
 .btn-action:hover {
-    background: #ece2e2;
+    background: var(--actionBtnHoveredColor);
 }
 
 .todo-btns-action {
