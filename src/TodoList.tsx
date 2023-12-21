@@ -35,6 +35,8 @@ const getTodoListStats = (todos: Todo[]): TodoListStatsProps => {
     return { completed: completed, total: todos.length };
 }
 interface TodoListActionsProps {
+    checkAll: () => void;
+    uncheckAll: () => void;
     createTodo: () => void;
     deleteTodoList: () => void;
 }
@@ -42,12 +44,12 @@ const TodoListActions = (ps: TodoListActionsProps) => (
     <div className="todo-btns-action">
         <Tooltip title="Check All">
             <IconButton className="btn-action" aria-label='add-todo' sx={{ mr: 1 }}
-                onClick={() => ps.createTodo()}><DoneAllIcon></DoneAllIcon>
+                onClick={() => ps.checkAll()}><DoneAllIcon></DoneAllIcon>
             </IconButton>
         </Tooltip>
         <Tooltip title="Uncheck All">
             <IconButton className="btn-action" aria-label='add-todo' sx={{ mr: 1 }}
-                onClick={() => ps.createTodo()}><UnpublishedIcon></UnpublishedIcon>
+                onClick={() => ps.uncheckAll()}><UnpublishedIcon></UnpublishedIcon>
             </IconButton>
         </Tooltip>
 
@@ -117,7 +119,12 @@ export const TodoList = (ps: TodoListProps) => {
         return result;
     };
 
-    const uncheckAllTodo = () => {
+    const checkAll = () => {
+        const newTodos = [...todos];
+        newTodos.forEach(todo => todo.isCompleted = true);
+        setTodos(newTodos);
+    }
+    const uncheckAll = () => {
         const newTodos = [...todos];
         newTodos.forEach(todo => todo.isCompleted = false);
         setTodos(newTodos);
@@ -134,7 +141,7 @@ export const TodoList = (ps: TodoListProps) => {
             <TodoListName name={todoName} onNameChange={ps.onNameChange} />
             <TodoListStats completed={todoListStats.completed} total={todoListStats.total} />
             {(todoListStats.total > 0) && todoListStats.completed === todoListStats.total &&
-                (<div className='uncheck-all'><button onClick={() => uncheckAllTodo()}>Uncheck All ♻️</button></div>)}
+                (<div className='uncheck-all'><button onClick={() => uncheckAll()}>Uncheck All ♻️</button></div>)}
             <DragDropContext onDragEnd={onDragEnd}>
 
                 <StrictModeDroppable droppableId='droppable'>
@@ -157,6 +164,8 @@ export const TodoList = (ps: TodoListProps) => {
                 </StrictModeDroppable>
             </DragDropContext>
             <TodoListActions
+                checkAll={() => checkAll()}
+                uncheckAll={() => uncheckAll()}
                 createTodo={() => createTodoAtIndex(todos.length)}
                 deleteTodoList={() => setTodos([])} />
         </>
