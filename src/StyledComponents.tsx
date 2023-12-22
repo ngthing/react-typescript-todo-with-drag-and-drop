@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
 const background = '#f9f2f2';
-const textColor = 'rgb(43, 39, 39)';
-const checkboxBorder = '#3d9863';
-const checkboxColor = '#6ec26eb5';
-const white = '#ffffff';
+// const textColor = 'rgb(43, 39, 39)';
+// const checkboxBorder = '#3d9863';
+// const checkboxColor = '#6ec26eb5';
+// const white = '#ffffff';
 const todoBorder = '#c0bbbb8f';
 const btnTextColor = '#2f2b2b';
 const actionBtnHoveredColor = '#ece2e2';
-const actionBtnColor = '#c6b9b9';
+// const actionBtnColor = '#c6b9b9';
 
 export const FlexContainer = styled.div`
     display: flex;
