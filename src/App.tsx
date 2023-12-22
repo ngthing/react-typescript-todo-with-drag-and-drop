@@ -3,6 +3,7 @@ import { Box, Container } from '@mui/material';
 import { Todo } from './TodoItem';
 import { TodoList } from './TodoList';
 import { sampleTodos } from './data';
+import { Footer, FooterText } from './StyledComponents';
 
 import './App.css';
 
@@ -46,10 +47,11 @@ function App() {
             <Box className='main-container'>
                 <TodoList todos={todos} name={todoName} onNameChange={setTodoName} setTodos={setTodos} />
             </Box>
-            <footer>
-                <div className='footerText'>🌱 Inspired by the <a href='https://github.com/ngthing/toododo' target='blank'>Internet</a>.
-                    Made by <a href='https://justthinguyen.com' target='blank'>Thi Nguyen</a>. Thanks for stopping by and have a beautiful day! 🌱</div>
-            </footer>
+            <Footer>
+                <FooterText>🌱 Inspired by the <a href='https://github.com/ngthing/toododo' target='blank'>Internet</a>.
+                    Made by <a href='https://justthinguyen.com' target='blank'>Thi Nguyen</a>. Thanks for stopping by and have a beautiful day! 🌱
+                </FooterText>
+            </Footer>
         </Container >
     );
 }

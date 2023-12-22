@@ -13,7 +13,25 @@ const actionBtnColor = '#c6b9b9';
 export const FlexContainer = styled.div`
     display: flex;
     justify-content: center;
-`
+`;
+
+export const Footer = styled.footer`
+    bottom: 5px;
+    left: 20%;
+    right: 20%;
+    text-align: center;
+    padding-bottom: 5px;
+`;
+
+export const FooterText = styled.div`
+    font-family: monospace;
+    padding-bottom: 3%;
+    padding-top: 5%;
+    &a{
+        text-decoration: none;
+        color: #9a5a89;
+    }
+`;
 export const ListTitle = styled.div`
     padding-top: 10vh;
     padding-bottom: 5vh;
