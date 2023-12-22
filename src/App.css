@@ -25,98 +25,7 @@ body {
     display: none;
 }
 
-.todo-list-name {
-    padding-top: 10vh;
-    padding-bottom: 5vh;
-}
-
-.todo-list-name input {
-    font-size: 3rem;
-    text-align: center;
-    cursor: pointer;
-    border: none;
-    background: transparent;
-    outline: none;
-    width: 90%;
-    font-family: inherit;
-    height: fit-content;
-}
-
-.header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.todo-list-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    /* color: white; */
-    padding-bottom: 20px;
-}
-
-.todo {
-    display: flex;
-    align-items: center;
-    margin: 0.25rem 0;
-    border: solid var(--todoBorder);
-    padding: 2px 10px;
-    border-radius: 10px;
-    min-width: 50%;
-    width: 80%;
-    position: relative;
-}
-
-.todo-text {
-    width: 100%;
-    padding-right: 3%;
-    display: inline-block;
-}
-
-.todoTextarea {
-    border: none;
-    background: transparent;
-    font-size: 1.2rem;
-    outline: none;
-    width: 100%;
-    font-family: inherit;
-    text-wrap: pretty;
-    overflow: auto;
-    resize: none;
-    height: fit-content;
-    /* necessary for line break in textarea works in mobile browser */
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    white-space: pre-line;
-}
-
-.todoTextarea::-webkit-scrollbar-thumb {
-    background: var(--todoBorder);
-    /* Color of the thumb */
-}
-
-.todoTextarea::-webkit-scrollbar-thumb:hover {
-    background: var(--todoBorder);
-    /* Color of the thumb on hover */
-}
-
-/* Style for the track (the non-draggable part of the scrollbar) */
-.todoTextarea::-webkit-scrollbar-track {
-    background: var(--background);
-    /* Color of the track */
-}
-
-/* Style for the scrollbar itself (including the arrows) */
-.todoTextarea::-webkit-scrollbar {
-    width: 4px;
-    /* Width of the scrollbar */
-}
-
 .todo-is-completed .checkbox {
-    /* color: #433c3c; */
     background: var(--checkboxColor);
 }
 
@@ -124,25 +33,6 @@ body {
     text-decoration: line-through;
     text-decoration-color: #ada1a1;
     text-decoration-thickness: 2px;
-}
-
-.checkbox {
-    margin: 0 10px;
-    display: flex;
-    width: 25px;
-    height: 22px;
-    border-radius: 50%;
-    font-size: 13px;
-    cursor: pointer;
-    justify-content: center;
-    align-items: center;
-    transition: background-color .2s ease-in-out;
-    border: 1px solid var(--checkboxBorder);
-}
-
-.checkbox:hover {
-    background: var(--checkboxColor);
-    border: 1px solid rgba(255, 255, 255, 0);
 }
 
 .todo-list-stats,
@@ -167,26 +57,6 @@ body {
 .allDone {
     font-size: inherit;
     bottom: 6px;
-}
-
-.btn-action {
-    border-color: transparent;
-    background: var(--actionBtnColor);
-    color: var(--btnTextColor);
-    cursor: pointer;
-}
-
-.btn-action:hover {
-    background: var(--actionBtnHoveredColor);
-}
-
-.todo-btns-action {
-    display: flex;
-    justify-content: center;
-}
-
-.todo-index {
-    cursor: pointer;
 }
 
 .btn-delete-todo {
