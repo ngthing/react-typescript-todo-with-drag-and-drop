@@ -7,16 +7,18 @@ import AddIcon from '@mui/icons-material/Add';
 import ClearIcon from '@mui/icons-material/Clear';
 import DoneAllIcon from '@mui/icons-material/DoneAll';
 import UnpublishedIcon from '@mui/icons-material/Unpublished';
+import { ListContainer, ListTitle, TitleInput, FlexContainer } from './StyledComponents';
 
 interface TodoListNameProps {
     name: string;
     onNameChange: (name: string) => void;
 }
+
 const TodoListName = (ps: TodoListNameProps) => (
-    <div className='todo-list-name'>
-        <input type="text" value={ps.name} id='todoName' aria-label='todoName'
+    <ListTitle>
+        <TitleInput type="text" value={ps.name} id='todoName' aria-label='todoName'
             onChange={(e) => ps.onNameChange(e.target.value)} />
-    </div>
+    </ListTitle>
 )
 interface TodoListStatsProps {
     completed: number;
@@ -41,31 +43,31 @@ interface TodoListActionsProps {
     deleteTodoList: () => void;
 }
 const TodoListActions = (ps: TodoListActionsProps) => (
-    <div className="todo-btns-action">
+    <FlexContainer>
         <Tooltip title="Check All">
-            <IconButton className="btn-action" aria-label='check-all-todo' sx={{ mr: 1 }}
+            <IconButton aria-label='check-all-todo' sx={{ mr: 1 }}
                 onClick={() => ps.checkAll()}><DoneAllIcon></DoneAllIcon>
             </IconButton>
         </Tooltip>
         <Tooltip title="Uncheck All">
-            <IconButton className="btn-action" aria-label='uncheck-all-todo' sx={{ mr: 1 }}
+            <IconButton aria-label='uncheck-all-todo' sx={{ mr: 1 }}
                 onClick={() => ps.uncheckAll()}><UnpublishedIcon></UnpublishedIcon>
             </IconButton>
         </Tooltip>
 
         <Tooltip title="Add One">
-            <IconButton className="btn-action" aria-label='add-todo' sx={{ mr: 1 }}
+            <IconButton aria-label='add-todo' sx={{ mr: 1 }}
                 onClick={() => ps.createTodo()}><AddIcon></AddIcon>
             </IconButton>
         </Tooltip>
         <Tooltip title="Delete All">
-            <IconButton className="btn-action" aria-label='delete-todo-list'
+            <IconButton aria-label='delete-todo-list'
                 onClick={() => ps.deleteTodoList()}>
                 <ClearIcon></ClearIcon>
             </IconButton>
         </Tooltip>
 
-    </div>
+    </FlexContainer>
 );
 
 interface TodoListProps {
@@ -146,7 +148,7 @@ export const TodoList = (ps: TodoListProps) => {
 
                 <StrictModeDroppable droppableId='droppable'>
                     {provided => (
-                        <div className="todo-list-container"
+                        <ListContainer
                             ref={provided.innerRef}
                             {...provided.droppableProps}
                         >
@@ -159,7 +161,7 @@ export const TodoList = (ps: TodoListProps) => {
 
                             ))}
                             {provided.placeholder}
-                        </div>
+                        </ListContainer>
                     )}
                 </StrictModeDroppable>
             </DragDropContext>
