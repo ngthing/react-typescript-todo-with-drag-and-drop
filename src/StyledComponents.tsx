@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 const background = '#f9f2f2';
 // const textColor = 'rgb(43, 39, 39)';
-// const checkboxBorder = '#3d9863';
-// const checkboxColor = '#6ec26eb5';
+const checkboxBorder = '#3d9863';
+const checkboxColor = '#6ec26eb5';
 // const white = '#ffffff';
 const todoBorder = '#c0bbbb8f';
 const btnTextColor = '#2f2b2b';
@@ -83,9 +83,9 @@ export const ItemCheckbox = styled.div`
     justify-content: center;
     align-items: center;
     transition: background-color .2s ease-in-out;
-    border: 1px solid var(checkboxBorder);
+    border: 1px solid ${checkboxBorder};
     &:hover{
-        background: var(checkboxColor);
+        background: ${checkboxColor};
         border: 1px solid rgba(255, 255, 255, 0);
     }
 `
