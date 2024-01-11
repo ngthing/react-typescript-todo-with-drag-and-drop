@@ -1,8 +1,10 @@
+import { useState } from "react";
 import { Todo, DragableTodoItem } from "./TodoItem";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { StrictModeDroppable } from "./StrictModeDroppable";
 import { ListContainer, ListTitle, TitleInput } from "./StyledComponents";
 import { TodoListActions } from "./TodoListActions";
+import { MUISnackbar } from "./CustomizedMui";
 
 interface TodoListNameProps {
 	name: string;
@@ -57,6 +59,7 @@ interface TodoListProps {
 }
 
 export const TodoList = (ps: TodoListProps) => {
+	const [showCopiedMessage, setShowCopiedMessage] = useState(false);
 	const todoName = ps.name;
 	const todos = ps.todos;
 	const setTodos = ps.setTodos;
@@ -126,7 +129,7 @@ export const TodoList = (ps: TodoListProps) => {
 			.map((todo) => (todo.isCompleted ? "✅ " : "👉 ") + todo.content)
 			.join("\n");
 		navigator.clipboard.writeText(listAsText);
-		console.log(listAsText);
+		setShowCopiedMessage(true);
 	};
 
 	return (
@@ -176,6 +179,12 @@ export const TodoList = (ps: TodoListProps) => {
 				deleteTodoList={() => setTodos([])}
 				copyList={copyList}
 			/>
+			<MUISnackbar
+				open={showCopiedMessage}
+				message="Todo list is copied to clipboard!"
+				type="success"
+				setOpen={setShowCopiedMessage}
+			></MUISnackbar>
 		</>
 	);
 };
