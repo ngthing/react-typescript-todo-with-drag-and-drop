@@ -126,7 +126,7 @@ export const TodoList = (ps: TodoListProps) => {
 
 	const copyList = () => {
 		const listAsText = todos
-			.map((todo) => (todo.isCompleted ? "✅ " : "👉 ") + todo.content)
+			.map((todo) => (todo.isCompleted ? "✔️ " : "👉 ") + todo.content)
 			.join("\n");
 		navigator.clipboard.writeText(listAsText);
 		setShowCopiedMessage(true);
