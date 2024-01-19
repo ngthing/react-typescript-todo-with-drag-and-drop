@@ -1,16 +1,16 @@
 {
-    "short_name": "Toododo",
-    "name": "Toododo",
-    "icons": [
-        {
-            "src": "toododo-icon.png",
-            "type": "image/png",
-            "sizes": "512x512",
-            "purpose": "any"
-        }
-    ],
-    "start_url": ".",
-    "display": "standalone",
-    "theme_color": "#000000",
-    "background_color": "#725d6b"
+	"short_name": "Toododo",
+	"name": "Toododo",
+	"icons": [
+		{
+			"src": "icon.jpg",
+			"type": "image/png",
+			"sizes": "1024x1024",
+			"purpose": "any"
+		}
+	],
+	"start_url": ".",
+	"display": "standalone",
+	"theme_color": "#000000",
+	"background_color": "#725d6b"
 }
