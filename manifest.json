@@ -3,10 +3,9 @@
 	"name": "Toododo",
 	"icons": [
 		{
-			"src": "icon.jpg",
-			"type": "image/png",
-			"sizes": "1024x1024",
-			"purpose": "any"
+			"src": "favicon.ico",
+			"sizes": "192x192",
+			"type": "image/png"
 		}
 	],
 	"start_url": ".",
