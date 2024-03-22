@@ -4,6 +4,7 @@ import { Todo } from "./TodoItem";
 import { TodoList } from "./TodoList";
 import { sampleTodos } from "./data";
 import { Footer, FooterText } from "./StyledComponents";
+import { TodoListProvider } from "./TodoListContext";
 
 import "./App.css";
 
@@ -16,9 +17,7 @@ function App() {
 	const [todoName, setTodoName] = useState(
 		storedTodoName.length ? storedTodoName : "Toododo"
 	);
-	const [todos, setTodos] = useState(
-		storedTodos.length ? storedTodos : sampleTodos
-	);
+
 	const [dimensions, setDimensions] = useState({
 		height: window.innerHeight,
 		width: window.innerWidth,
@@ -43,20 +42,16 @@ function App() {
 		localStorage.setItem("todoName", todoName);
 	}, [todoName]);
 
-	useEffect(() => {
-		localStorage.setItem("todos", JSON.stringify(todos));
-	}, [todos]);
-
 	return (
 		<Container className="app" data-width={dimensions.width}>
-			<Box className="main-container">
-				<TodoList
-					todos={todos}
-					name={todoName}
-					onNameChange={setTodoName}
-					setTodos={setTodos}
-				/>
-			</Box>
+			<TodoListProvider
+				initialTodos={storedTodos.length ? storedTodos : sampleTodos}
+			>
+				<Box className="main-container">
+					<TodoList name={todoName} onNameChange={setTodoName} />
+				</Box>
+			</TodoListProvider>
+
 			<Footer>
 				<FooterText>
 					🌱 Inspired by the{" "}
