@@ -1,6 +1,10 @@
 import { createContext, useContext, useReducer } from "react";
 import { Todo } from "./TodoItem";
 
+const saveTodosToLocalStorage = (todos: Todo[]): void => {
+	localStorage.setItem("todos", JSON.stringify(todos));
+};
+
 export interface TodoListAction {
 	type:
 		| "added"
@@ -22,53 +26,66 @@ export const todoListReducer = (
 	todos: Todo[],
 	action: TodoListAction
 ): Todo[] => {
+	let newTodos: Todo[] = [];
+
 	switch (action.type) {
 		case "added": {
-			const newTodos = [...todos];
+			newTodos = [...todos];
 			if (action.index !== undefined)
 				newTodos.splice(action.index, 0, {
 					id: `todo-${Date.now()}`,
 					content: "",
 					isCompleted: false,
 				});
-			return newTodos;
+			break;
 		}
 		case "deleted": {
-			return todos.filter((t, index) => index !== action.index);
+			newTodos = todos.filter((t, index) => index !== action.index);
+			break;
 		}
 		case "updated_content": {
-			return todos.map((t, index) =>
+			newTodos = todos.map((t, index) =>
 				index === action.index
 					? { ...t, content: action.content ?? t.content }
 					: t
 			);
+			break;
 		}
 		case "toggled_complete":
-			return todos.map((t, index) =>
+			newTodos = todos.map((t, index) =>
 				index === action.index
 					? { ...t, isCompleted: !t.isCompleted }
 					: t
 			);
+			break;
 		case "checked_all":
-			return todos.map((t) => ({ ...t, isCompleted: true }));
+			newTodos = todos.map((t) => ({ ...t, isCompleted: true }));
+			break;
 		case "unchecked_all":
-			return todos.map((t) => ({ ...t, isCompleted: false }));
+			newTodos = todos.map((t) => ({ ...t, isCompleted: false }));
+			break;
 		case "reordered": {
-			if (action.index && action.endIndex) {
-				const newTodos = [...todos];
+			if (action.index !== undefined && action.endIndex !== undefined) {
+				newTodos = [...todos];
 				const [removed] = newTodos.splice(action.index, 1);
 				newTodos.splice(action.endIndex, 0, removed);
-				return newTodos;
-			} else return todos;
+			} else {
+				newTodos = todos;
+			}
+			break;
 		}
 		case "deleted_all":
-			return [];
-		case "get_state":
-			return todos;
+			newTodos = [];
+			break;
 		default: {
 			throw new Error("Unknown action: " + action.type);
 		}
 	}
+
+	// Save todos to localStorage whenever they are updated
+	saveTodosToLocalStorage(newTodos);
+
+	return newTodos;
 };
 
 const TodoListContext = createContext<Todo[] | null>(null);
