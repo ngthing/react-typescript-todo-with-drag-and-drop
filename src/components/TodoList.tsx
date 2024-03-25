@@ -5,6 +5,7 @@ import { StrictModeDroppable } from "./StrictModeDroppable";
 import { ListContainer, ListTitle, TitleInput } from "./StyledComponents";
 import { TodoListActions } from "./TodoListActions";
 import { MUISnackbar } from "./CustomizedMui";
+import { useTodoList, useTodoListDispatch } from "./TodoListContext";
 
 interface TodoListNameProps {
 	name: string;
@@ -53,75 +54,52 @@ const getTodoListStats = (todos: Todo[]): TodoListStatsProps => {
 
 interface TodoListProps {
 	name: string;
-	todos: Todo[];
 	onNameChange: (name: string) => void;
-	setTodos: (todos: Todo[]) => void;
 }
 
 export const TodoList = (ps: TodoListProps) => {
 	const [showCopiedMessage, setShowCopiedMessage] = useState(false);
 	const todoName = ps.name;
-	const todos = ps.todos;
-	const setTodos = ps.setTodos;
+	const todos = useTodoList();
+	const dispatch = useTodoListDispatch();
 	const todoListStats = getTodoListStats(todos);
 
 	const handleKeyDown = (e: React.KeyboardEvent<HTMLElement>, i: number) => {
 		if (e.key === "Enter") createTodoAtIndex(i + 1);
 	};
 	const createTodoAtIndex = (i: number) => {
-		const newTodos = [...todos];
-		newTodos.splice(i, 0, {
-			id: `todo-${Date.now()}`,
-			content: "",
-			isCompleted: false,
-		});
-		setTodos(newTodos);
+		dispatch({ type: "added", index: i });
 		setTimeout(() => {
-			(document.getElementById(`todo-input-` + i) as HTMLElement).focus();
-		}, 0);
+			(
+				document.getElementById(`todo-input-` + i) as HTMLElement
+			)?.focus();
+		}, 10);
 	};
-	const updateTodoAtIndex = (content: string, i: number) => {
-		const newTodos = [...todos];
-		newTodos[i].content = content.replace(/[\n\r]/g, "");
-		setTodos(newTodos);
-	};
-	const deleteTodoAtIndex = (i: number) => {
-		setTodos(todos.slice(0, i).concat(todos.slice(i + 1)));
-	};
-	const toggleTodoCompleteAtIndex = (i: number) => {
-		const newTodos = [...todos];
-		newTodos[i].isCompleted = !newTodos[i].isCompleted;
-		setTodos(newTodos);
-	};
+	const updateTodoAtIndex = (content: string, i: number) =>
+		dispatch({
+			type: "updated_content",
+			index: i,
+			content: content.replace(/[\n\r]/g, ""),
+		});
 
-	// a little function to help us with reordering the result
-	const reorder = (list: Todo[], startIndex: number, endIndex: number) => {
-		const result = Array.from(list);
-		const [removed] = result.splice(startIndex, 1);
-		result.splice(endIndex, 0, removed);
+	const deleteTodo = (i: number) => dispatch({ type: "deleted", index: i });
 
-		return result;
-	};
+	const toggleTodoCompleteAtIndex = (i: number) =>
+		dispatch({
+			type: "toggled_complete",
+			index: i,
+		});
 
-	const checkAll = () => {
-		const newTodos = [...todos];
-		newTodos.forEach((todo) => (todo.isCompleted = true));
-		setTodos(newTodos);
-	};
-	const uncheckAll = () => {
-		const newTodos = [...todos];
-		newTodos.forEach((todo) => (todo.isCompleted = false));
-		setTodos(newTodos);
-	};
+	const checkAll = () => dispatch({ type: "checked_all", index: 0 });
+	const uncheckAll = () => dispatch({ type: "unchecked_all", index: 0 });
 
 	const onDragEnd = (result: DropResult) => {
 		if (!result.destination) return;
-		const items = reorder(
-			todos,
-			result.source.index,
-			result.destination.index
-		);
-		setTodos(items);
+		dispatch({
+			type: "reordered",
+			index: result.source.index,
+			endIndex: result.destination.index,
+		});
 	};
 
 	const copyList = () => {
@@ -154,14 +132,14 @@ export const TodoList = (ps: TodoListProps) => {
 							ref={provided.innerRef}
 							{...provided.droppableProps}
 						>
-							{ps.todos.map((todo, i) => (
+							{todos.map((todo, i) => (
 								<DragableTodoItem
 									key={todo.id}
 									index={i}
 									{...todo}
 									onChange={updateTodoAtIndex}
 									handleKeyDown={handleKeyDown}
-									handleDelete={deleteTodoAtIndex}
+									handleDelete={deleteTodo}
 									toggleTodoCompleteAtIndex={
 										toggleTodoCompleteAtIndex
 									}
@@ -176,7 +154,7 @@ export const TodoList = (ps: TodoListProps) => {
 				checkAll={checkAll}
 				uncheckAll={uncheckAll}
 				createTodo={() => createTodoAtIndex(todos.length)}
-				deleteTodoList={() => setTodos([])}
+				deleteTodoList={() => dispatch({ type: "deleted_all" })}
 				copyList={copyList}
 			/>
 			<MUISnackbar
