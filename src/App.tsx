@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { Box, Container } from "@mui/material";
-import { Todo } from "./TodoItem";
-import { TodoList } from "./TodoList";
+import { Todo } from "./components/TodoItem";
+import { TodoList } from "./components/TodoList";
 import { sampleTodos } from "./data";
-import { Footer, FooterText } from "./StyledComponents";
-import { TodoListProvider } from "./TodoListContext";
+import { Footer, FooterText } from "./components/StyledComponents";
+import { TodoListProvider } from "./components/TodoListContext";
 
 import "./App.css";
 
