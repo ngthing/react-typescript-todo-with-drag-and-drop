@@ -80,6 +80,5 @@ describe("todoListReducer", () => {
 		const newTodos = todoListReducer(initialState, action);
 
 		expect(newTodos[0]).toEqual(initialState[1]);
-		console.log(newTodos, initialState);
 	});
 });
