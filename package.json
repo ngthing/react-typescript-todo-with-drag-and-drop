@@ -28,7 +28,7 @@
 	"scripts": {
 		"start": "PORT=4000 react-scripts start",
 		"build": "react-scripts build",
-		"test": "react-scripts test",
+		"test": "react-scripts test --verbose",
 		"eject": "react-scripts eject",
 		"predeploy": "npm run build",
 		"deploy": "gh-pages -d build"
@@ -53,6 +53,8 @@
 	},
 	"devDependencies": {
 		"@types/react-beautiful-dnd": "^13.1.4",
-		"nth-check": ">=2.0.1"
+		"@types/react-test-renderer": "^18.0.7",
+		"nth-check": ">=2.0.1",
+		"react-test-renderer": "^18.2.0"
 	}
 }
