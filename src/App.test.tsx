@@ -1,9 +1,14 @@
 /* eslint-disable testing-library/no-debugging-utils */
 import App from "./App";
-import React from "react";
 import { render, screen } from "@testing-library/react";
+import renderer from "react-test-renderer";
 
 describe("App", () => {
+	it("renders correctly", () => {
+		const component = renderer.create(<App />);
+		let tree = component.toJSON();
+		expect(tree).toMatchSnapshot();
+	});
 	it("renders App component and has a Todo list name and default action buttons", () => {
 		render(<App />);
 		expect(screen.getByLabelText("todoName")).toBeInTheDocument();
