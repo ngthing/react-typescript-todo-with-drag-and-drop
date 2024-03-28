@@ -27,7 +27,7 @@ export const FooterText = styled.div`
     font-family: monospace;
     padding-bottom: 3%;
     padding-top: 5%;
-    &a{
+    &a {
         text-decoration: none;
         color: #9a5a89;
     }
@@ -70,7 +70,7 @@ export const ItemContainer = styled.div`
 
 export const ItemIndex = styled.span`
     cursor: pointer;
-`
+`;
 
 export const ItemCheckbox = styled.div`
     margin: 0 10px;
@@ -82,19 +82,19 @@ export const ItemCheckbox = styled.div`
     cursor: pointer;
     justify-content: center;
     align-items: center;
-    transition: background-color .2s ease-in-out;
+    transition: background-color 0.2s ease-in-out;
     border: 1px solid ${checkboxBorder};
-    &:hover{
+    &:hover {
         background: ${checkboxColor};
         border: 1px solid rgba(255, 255, 255, 0);
     }
-`
+`;
 
 export const ItemTextContainer = styled.div`
     width: 100%;
     padding-right: 3%;
     display: inline-block;
-`
+`;
 
 export const ItemText = styled.textarea`
     border: none;
@@ -115,17 +115,19 @@ export const ItemText = styled.textarea`
     &::-webkit-scrollbar {
         width: 4px;
     }
-    &::-webkit-scrollbar-track {background: ${background};}
+    &::-webkit-scrollbar-track {
+        background: ${background};
+    }
     &::-webkit-scrollbar-thumb {
         background: ${todoBorder};
     }
-`
+`;
 
 export const Button = styled.button`
     border-color: transparent;
-    color:  ${btnTextColor};
+    color: ${btnTextColor};
     cursor: pointer;
-    &:hover{
-        background:${actionBtnHoveredColor}
+    &:hover {
+        background: ${actionBtnHoveredColor};
     }
-`
+`;

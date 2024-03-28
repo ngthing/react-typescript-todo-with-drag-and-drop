@@ -18,5 +18,5 @@ export const sampleTodos = [
         id: 'todo-0',
         content: 'Click x to remove a todo or remove all in the bottom',
         isCompleted: false,
-    }
+    },
 ];
